@@ -1,8 +1,12 @@
-<script lang="ts">
+<script context="module">
+	export async function load({ fetch }) {
+		const res = await fetch('/graph/neighbors.json');
+    return res.json();
+	}
 </script>
 
 <main>
-	<h1>Hello world!</h1>
+	<h1>Spidey DB Demo</h1>
 </main>
 
 <style>
