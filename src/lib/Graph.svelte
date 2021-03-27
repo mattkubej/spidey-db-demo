@@ -128,7 +128,7 @@
 		</ul>
 	</div>
 
-	<div class="graph" style="height: {height}px; width: {width}px" />
+	<div class="graph" style="height: {height}px; width: {width}px;" />
 </div>
 
 <style>
