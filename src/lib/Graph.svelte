@@ -132,8 +132,13 @@
 </div>
 
 <style>
-	.container {
-		display: flex;
-		justify-content: space-around;
-	}
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.graph {
+  width: 400px;
+  height: 400px;
+}
 </style>
