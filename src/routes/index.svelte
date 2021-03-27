@@ -18,6 +18,10 @@
 	export let edges: string[];
 </script>
 
+<svelte:head>
+  <title>Spidey DB Demo</title>
+</svelte:head>
+
 <main>
 	<h1>Spidey DB Demo</h1>
 	<Graph {vertices} {edges} />
