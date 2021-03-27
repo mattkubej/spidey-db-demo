@@ -9,12 +9,12 @@
 	const height = 400;
 	let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
 
-  interface Subject {
-    x?: number;
-    y?: number;
-    fx?: number;
-    fy?: number;
-  }
+	interface Subject {
+		x?: number;
+		y?: number;
+		fx?: number;
+		fy?: number;
+	}
 
 	interface Node extends d3.SimulationNodeDatum {
 		id: string;
@@ -128,17 +128,12 @@
 		</ul>
 	</div>
 
-	<div class="graph" />
+	<div class="graph" style="height: {height}px; width: {width}px" />
 </div>
 
 <style>
-.container {
-  display: flex;
-  justify-content: space-around;
-}
-
-.graph {
-  width: 400px;
-  height: 400px;
-}
+	.container {
+		display: flex;
+		justify-content: space-around;
+	}
 </style>
