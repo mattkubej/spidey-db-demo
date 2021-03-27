@@ -5,23 +5,28 @@
 	export let vertices: string[] = [];
 	export let edges: string[] = [];
 
-	const width = 300;
-	const height = 300;
+	const width = 400;
+	const height = 400;
 	let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
 
+  interface Subject {
+    x: number;
+    y: number;
+    fx: number;
+    fy: number;
+  }
 
-  interface Node extends d3.SimulationNodeDatum {
-    id: string;
-  };
+	interface Node extends d3.SimulationNodeDatum {
+		id: string;
+	}
 
-  interface Link extends d3.SimulationLinkDatum<Node> {
+	interface Link extends d3.SimulationLinkDatum<Node> {
 		source: string;
 		target: string;
-  };
+	}
 
 	let nodes: Node[] = vertices.map((id) => ({ id }));
 	let links: Link[] = edges.map(([source, target]) => ({ source, target }));
-
 
 	onMount(() => {
 		svg = d3
@@ -79,24 +84,30 @@
 			.force('center', d3.forceCenter(width / 2, height / 2))
 			.on('tick', simulationUpdate);
 
-		function dragstarted(event) {
+		function dragstarted(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
 			if (!event.active) simulation.alphaTarget(0.3).restart();
 			event.subject.fx = event.subject.x;
 			event.subject.fy = event.subject.y;
 		}
 
-		function dragged(event) {
+		function dragged(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
 			event.subject.fx = event.x;
 			event.subject.fy = event.y;
 		}
 
-		function dragended(event) {
+		function dragended(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
 			if (!event.active) simulation.alphaTarget(0);
 			event.subject.fx = null;
 			event.subject.fy = null;
 		}
 
-		node.call(d3.drag().on('start', dragstarted).on('drag', dragged).on('end', dragended));
+		node.call(
+			d3
+				.drag<SVGCircleElement, Node>()
+				.on('start', dragstarted)
+				.on('drag', dragged)
+				.on('end', dragended)
+		);
 	});
 </script>
 
