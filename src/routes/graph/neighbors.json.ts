@@ -18,7 +18,6 @@ export async function get(): Promise<Response> {
 
   const [vertices, edges] = await client.getNeighbors('a', 3);
 
-
   return {
     body: {vertices, edges}
   };

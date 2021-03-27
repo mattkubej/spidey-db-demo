@@ -1,12 +1,26 @@
 <script context="module">
 	export async function load({ fetch }) {
 		const res = await fetch('/graph/neighbors.json');
-    return res.json();
+		const { vertices, edges } = await res.json();
+		return {
+			props: {
+				vertices,
+				edges
+			}
+		};
 	}
+</script>
+
+<script lang="ts">
+	import Graph from '$lib/Graph.svelte';
+
+	export let vertices: string[];
+	export let edges: string[];
 </script>
 
 <main>
 	<h1>Spidey DB Demo</h1>
+	<Graph {vertices} {edges} />
 </main>
 
 <style>
