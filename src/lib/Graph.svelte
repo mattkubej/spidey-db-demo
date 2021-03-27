@@ -10,10 +10,10 @@
 	let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
 
   interface Subject {
-    x: number;
-    y: number;
-    fx: number;
-    fy: number;
+    x?: number;
+    y?: number;
+    fx?: number;
+    fy?: number;
   }
 
 	interface Node extends d3.SimulationNodeDatum {
@@ -21,8 +21,8 @@
 	}
 
 	interface Link extends d3.SimulationLinkDatum<Node> {
-		source: string;
-		target: string;
+		source: string & Subject;
+		target: string & Subject;
 	}
 
 	let nodes: Node[] = vertices.map((id) => ({ id }));
