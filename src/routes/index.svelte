@@ -1,6 +1,6 @@
 <script context="module">
 	export async function load({ fetch }) {
-		const res = await fetch('/graph/neighbors.json');
+		const res = await fetch('/graph/neighbors?vertex=a&distance=3');
 		const { vertices, edges } = await res.json();
 		return {
 			props: {
