@@ -132,12 +132,12 @@
 </div>
 
 <style>
-	.container {
-		display: flex;
-		justify-content: space-around;
-	}
+.container {
+  display: flex;
+  justify-content: space-around;
+}
 
-  h2 {
-    color: var(--purple);
-  }
+h2 {
+  color: var(--purple);
+}
 </style>
