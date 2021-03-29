@@ -31,6 +31,26 @@
 	:root {
 		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
 			'Open Sans', 'Helvetica Neue', sans-serif;
+
+    --bg: #1d2021;
+    --bg2: #504945;
+    --fg: #fbf1c7;
+    --fg2: #d5c4a1;
+    --purple: #d3869b;
+    --blue: #83a598;
+    --red: #fb4934;
+    --green: #b8bb26;
+    --yellow: #fabd2f;
+    --aqua: #8ec07c;
+    --orange: #fe8019;
+
+    --textNormal: var(--fg);
+    --textLink: var(--purple);
+    --textTitle: var(--purple);
+    --hr: var(--blue);
+
+    background-color: var(--bg);
+    color: var(--textNormal);
 	}
 
 	main {
@@ -40,7 +60,7 @@
 	}
 
 	h1 {
-		color: #ff3e00;
+		color: var(--purple);
 		text-transform: uppercase;
 		font-size: 4rem;
 		font-weight: 100;

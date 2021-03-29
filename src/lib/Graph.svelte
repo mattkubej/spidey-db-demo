@@ -38,7 +38,7 @@
 
 		const link = svg
 			.append('g')
-			.attr('stroke', '#999')
+			.attr('stroke', 'var(--fg)')
 			.attr('stroke-opacity', 0.6)
 			.selectAll('line')
 			.data(links)
@@ -46,14 +46,14 @@
 
 		const node = svg
 			.append('g')
-			.attr('stroke', '#fff')
+			.attr('stroke', 'var(--fg)')
 			.attr('stroke-width', 1.5)
 			.selectAll('g')
 			.data(nodes)
 			.enter()
 			.append('g');
 
-		node.append('circle').attr('r', 10).attr('fill', 'red');
+		node.append('circle').attr('r', 10).attr('fill', 'var(--bg2)');
 
 		node
 			.append('text')
@@ -136,4 +136,8 @@
 		display: flex;
 		justify-content: space-around;
 	}
+
+  h2 {
+    color: var(--purple);
+  }
 </style>
