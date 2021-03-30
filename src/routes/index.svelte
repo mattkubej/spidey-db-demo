@@ -14,9 +14,25 @@
 <script lang="ts">
 	import Graph from '$lib/Graph.svelte';
 	import Graphv2 from '$lib/Graphv2.svelte';
+	import Form from '$lib/Form.svelte';
+  import { query } from '$lib/store';
 
 	export let vertices: string[];
 	export let edges: string[];
+
+  async function getNeighbors(vertex: string) {
+		const res = await fetch(`/graph/neighbors?vertex=${vertex}&distance=1`);
+    return res.json();
+  }
+
+  $: {
+    if ($query.vector) {
+      getNeighbors($query.vector).then(neighbors => {
+          vertices = neighbors.vertices;
+          edges = neighbors.edges;
+      });
+    }
+  }
 </script>
 
 <svelte:head>
@@ -25,6 +41,7 @@
 
 <main>
 	<h1>Spidey DB Demo</h1>
+  <Form />
 	<Graph {vertices} {edges} />
 	<Graphv2 {vertices} {edges} />
 </main>

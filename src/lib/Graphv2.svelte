@@ -20,14 +20,17 @@
 		target: string & Subject;
 	}
 
-	let nodes: Node[] = vertices.map((id) => ({ id }));
-	let links: Link[] = edges.map(([source, target]) => ({ source, target }));
+	const width = 400;
+	const height = 400;
 
 	let renderedNodes: Node[] = [];
 	let renderedLinks: Link[] = [];
 
-	const width = 400;
-	const height = 400;
+  let nodes: Node[];
+  let links: Link[];
+
+	$: nodes = vertices.map((id) => ({ id }));
+	$: links = edges.map(([source, target]) => ({ source, target }));
 
 	$: simulation = d3
 		.forceSimulation(nodes)
