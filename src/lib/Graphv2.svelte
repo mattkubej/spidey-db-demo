@@ -42,7 +42,40 @@
 			renderedNodes = [...nodes];
 		});
 
+  function dragsubject(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+    return simulation.find(event.x, event.y);
+  }
+
+	function dragstarted(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+		if (!event.active) simulation.alphaTarget(0.3).restart();
+		event.subject.fx = event.subject.x;
+		event.subject.fy = event.subject.y;
+	}
+
+	function dragged(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+		event.subject.fx = event.x;
+		event.subject.fy = event.y;
+	}
+
+	function dragended(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+		if (!event.active) simulation.alphaTarget(0);
+		event.subject.fx = null;
+		event.subject.fy = null;
+	}
+
+	$: simNodes = [];
+
 	$: {
+		simNodes.forEach((node) => {
+			d3.select(node).call(
+				d3
+					.drag<SVGCircleElement, Node>()
+          .subject(dragsubject)
+					.on('start', dragstarted)
+					.on('drag', dragged)
+					.on('end', dragended)
+			);
+		});
 	}
 </script>
 
@@ -54,8 +87,8 @@
 			{/each}
 		</g>
 		<g stroke="var(--fg)" stroke-width="1.5">
-			{#each renderedNodes as { x, y, id }}
-				<g transform={`translate(${x},${y})`}>
+			{#each renderedNodes as { x, y, id }, i}
+				<g bind:this={simNodes[i]} transform={`translate(${x},${y})`}>
 					<circle fill="var(--bg2)" r={10} />
 					<text cursor="pointer" fill="white" font-size="12" y="3" x="-4">{id}</text>
 				</g>
