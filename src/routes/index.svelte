@@ -13,6 +13,7 @@
 
 <script lang="ts">
 	import Graph from '$lib/Graph.svelte';
+	import Graphv2 from '$lib/Graphv2.svelte';
 
 	export let vertices: string[];
 	export let edges: string[];
@@ -25,6 +26,7 @@
 <main>
 	<h1>Spidey DB Demo</h1>
 	<Graph {vertices} {edges} />
+	<Graphv2 {vertices} {edges} />
 </main>
 
 <style>
