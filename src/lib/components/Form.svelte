@@ -5,6 +5,7 @@ import { query } from '$lib/store';
 <div class="container">
   <form>
     <input bind:value={$query.vector} />
+    <input bind:value={$query.distance} />
   </form>
 </div>
 
