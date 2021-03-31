@@ -13,7 +13,6 @@
 
 <script lang="ts">
 	import Graph from '$lib/Graph.svelte';
-	import Graphv2 from '$lib/Graphv2.svelte';
 	import Form from '$lib/Form.svelte';
   import { query } from '$lib/store';
 
@@ -43,7 +42,6 @@
 	<h1>Spidey DB Demo</h1>
   <Form />
 	<Graph {vertices} {edges} />
-	<Graphv2 {vertices} {edges} />
 </main>
 
 <style>

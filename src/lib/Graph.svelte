@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import * as d3 from 'd3';
 
 	export let vertices: string[] = [];
 	export let edges: string[] = [];
-
-	const width = 400;
-	const height = 400;
-	let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
 
 	interface Subject {
 		x?: number;
@@ -25,90 +20,66 @@
 		target: string & Subject;
 	}
 
-	let nodes: Node[] = vertices.map((id) => ({ id }));
-	let links: Link[] = edges.map(([source, target]) => ({ source, target }));
+	const width = 400;
+	const height = 400;
 
-	onMount(() => {
-		svg = d3
-			.select('.graph')
-			.append('svg')
-			.attr('width', width)
-			.attr('height', height)
-			.attr('viewBox', `0,0,${width},${height}`);
+	let renderedNodes: Node[] = [];
+	let renderedLinks: Link[] = [];
 
-		const link = svg
-			.append('g')
-			.attr('stroke', 'var(--fg)')
-			.attr('stroke-opacity', 0.6)
-			.selectAll('line')
-			.data(links)
-			.join('line');
+  let nodes: Node[];
+  let links: Link[];
 
-		const node = svg
-			.append('g')
-			.attr('stroke', 'var(--fg)')
-			.attr('stroke-width', 1.5)
-			.selectAll('g')
-			.data(nodes)
-			.enter()
-			.append('g');
+	$: nodes = vertices.map((id) => ({ id }));
+	$: links = edges.map(([source, target]) => ({ source, target }));
 
-		node.append('circle').attr('r', 10).attr('fill', 'var(--bg2)');
+	$: simulation = d3
+		.forceSimulation(nodes)
+		.force(
+			'link',
+			d3.forceLink<Node, Link>(links).id((v) => v.id)
+		)
+		.force('charge', d3.forceManyBody())
+		.force('center', d3.forceCenter(width / 2, height / 2))
+		.on('tick', () => {
+			renderedLinks = [...links];
+			renderedNodes = [...nodes];
+		});
 
-		node
-			.append('text')
-			.text((d) => d.id)
-			.attr('cursor', 'pointer')
-			.attr('fill', 'white')
-			.attr('font-size', 12)
-			.attr('y', 3)
-			.attr('x', -4);
+  function dragsubject(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+    return simulation.find(event.x, event.y);
+  }
 
-		function simulationUpdate() {
-			link
-				.attr('x1', (d) => d.source.x)
-				.attr('y1', (d) => d.source.y)
-				.attr('x2', (d) => d.target.x)
-				.attr('y2', (d) => d.target.y);
+	function dragstarted(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+		if (!event.active) simulation.alphaTarget(0.3).restart();
+		event.subject.fx = event.subject.x;
+		event.subject.fy = event.subject.y;
+	}
 
-			node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-		}
+	function dragged(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+		event.subject.fx = event.x;
+		event.subject.fy = event.y;
+	}
 
-		const simulation = d3
-			.forceSimulation(nodes)
-			.force(
-				'link',
-				d3.forceLink<Node, Link>(links).id((v) => v.id)
-			)
-			.force('charge', d3.forceManyBody())
-			.force('center', d3.forceCenter(width / 2, height / 2))
-			.on('tick', simulationUpdate);
+	function dragended(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+		if (!event.active) simulation.alphaTarget(0);
+		event.subject.fx = null;
+		event.subject.fy = null;
+	}
 
-		function dragstarted(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
-			if (!event.active) simulation.alphaTarget(0.3).restart();
-			event.subject.fx = event.subject.x;
-			event.subject.fy = event.subject.y;
-		}
+	$: simNodes = [];
 
-		function dragged(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
-			event.subject.fx = event.x;
-			event.subject.fy = event.y;
-		}
-
-		function dragended(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
-			if (!event.active) simulation.alphaTarget(0);
-			event.subject.fx = null;
-			event.subject.fy = null;
-		}
-
-		node.call(
-			d3
-				.drag<SVGCircleElement, Node>()
-				.on('start', dragstarted)
-				.on('drag', dragged)
-				.on('end', dragended)
-		);
-	});
+	$: {
+		simNodes.forEach((node) => {
+			d3.select(node).call(
+				d3
+					.drag<SVGCircleElement, Node>()
+          .subject(dragsubject)
+					.on('start', dragstarted)
+					.on('drag', dragged)
+					.on('end', dragended)
+			);
+		});
+	}
 </script>
 
 <div class="container">
@@ -128,7 +99,21 @@
 		</ul>
 	</div>
 
-	<div class="graph" style="height: {height}px; width: {width}px;" />
+	<svg {width} {height}>
+		<g stroke="var(--fg)" stroke-width="0.6">
+			{#each renderedLinks as { source, target }}
+				<line x1={source.x} y1={source.y} x2={target.x} y2={target.y} />
+			{/each}
+		</g>
+		<g stroke="var(--fg)" stroke-width="1.5">
+			{#each renderedNodes as { x, y, id }, i}
+				<g bind:this={simNodes[i]} transform={`translate(${x},${y})`}>
+					<circle fill="var(--bg2)" r={10} />
+					<text cursor="pointer" fill="white" font-size="12" y="3" x="-4">{id}</text>
+				</g>
+			{/each}
+		</g>
+	</svg>
 </div>
 
 <style>
