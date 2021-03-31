@@ -22,7 +22,8 @@ export default function drag(simulation: GraphSimulation): GraphNodeDragBehavior
 		event.subject.fy = null;
 	}
 
-	return d3.drag<SVGCircleElement, GraphNode>()
+	return d3
+		.drag<SVGCircleElement, GraphNode>()
 		.subject(dragsubject)
 		.on('start', dragstarted)
 		.on('drag', dragged)
