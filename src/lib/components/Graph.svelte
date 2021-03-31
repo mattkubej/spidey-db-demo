@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as d3 from 'd3';
+	import drag from '$lib/utils/drag';
 
 	export let vertices: string[] = [];
 	export let edges: string[] = [];
@@ -10,8 +11,8 @@
 	let renderedNodes: GraphNode[] = [];
 	let renderedLinks: GraphLink[] = [];
 
-  let nodes: GraphNode[];
-  let links: GraphLink[];
+	let nodes: GraphNode[];
+	let links: GraphLink[];
 
 	$: nodes = vertices.map((id) => ({ id }));
 	$: links = edges.map(([source, target]) => ({ source, target }));
@@ -29,39 +30,11 @@
 			renderedNodes = [...nodes];
 		});
 
-  function dragsubject(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
-    return simulation.find(event.x, event.y);
-  }
-
-	function dragstarted(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
-		if (!event.active) simulation.alphaTarget(0.3).restart();
-		event.subject.fx = event.subject.x;
-		event.subject.fy = event.subject.y;
-	}
-
-	function dragged(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
-		event.subject.fx = event.x;
-		event.subject.fy = event.y;
-	}
-
-	function dragended(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
-		if (!event.active) simulation.alphaTarget(0);
-		event.subject.fx = null;
-		event.subject.fy = null;
-	}
-
 	$: simNodes = [];
 
 	$: {
 		simNodes.forEach((node) => {
-			d3.select(node).call(
-				d3
-					.drag<SVGCircleElement, GraphNode>()
-          .subject(dragsubject)
-					.on('start', dragstarted)
-					.on('drag', dragged)
-					.on('end', dragended)
-			);
+			d3.select(node).call(drag(simulation));
 		});
 	}
 </script>
@@ -101,12 +74,12 @@
 </div>
 
 <style>
-.container {
-  display: flex;
-  justify-content: space-around;
-}
+	.container {
+		display: flex;
+		justify-content: space-around;
+	}
 
-h2 {
-  color: var(--purple);
-}
+	h2 {
+		color: var(--purple);
+	}
 </style>
