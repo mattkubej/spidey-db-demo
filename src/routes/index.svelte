@@ -12,8 +12,8 @@
 </script>
 
 <script lang="ts">
-	import Graph from '$lib/Graph.svelte';
-	import Form from '$lib/Form.svelte';
+	import Graph from '$lib/components/Graph.svelte';
+  import Form from '$lib/components/Form.svelte';
   import { query } from '$lib/store';
 
 	export let vertices: string[];
