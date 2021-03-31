@@ -4,30 +4,14 @@
 	export let vertices: string[] = [];
 	export let edges: string[] = [];
 
-	interface Subject {
-		x?: number;
-		y?: number;
-		fx?: number;
-		fy?: number;
-	}
-
-	interface Node extends d3.SimulationNodeDatum {
-		id: string;
-	}
-
-	interface Link extends d3.SimulationLinkDatum<Node> {
-		source: string & Subject;
-		target: string & Subject;
-	}
-
 	const width = 400;
 	const height = 400;
 
-	let renderedNodes: Node[] = [];
-	let renderedLinks: Link[] = [];
+	let renderedNodes: GraphNode[] = [];
+	let renderedLinks: GraphLink[] = [];
 
-  let nodes: Node[];
-  let links: Link[];
+  let nodes: GraphNode[];
+  let links: GraphLink[];
 
 	$: nodes = vertices.map((id) => ({ id }));
 	$: links = edges.map(([source, target]) => ({ source, target }));
@@ -36,7 +20,7 @@
 		.forceSimulation(nodes)
 		.force(
 			'link',
-			d3.forceLink<Node, Link>(links).id((v) => v.id)
+			d3.forceLink<GraphNode, GraphLink>(links).id((v) => v.id)
 		)
 		.force('charge', d3.forceManyBody())
 		.force('center', d3.forceCenter(width / 2, height / 2))
@@ -45,22 +29,22 @@
 			renderedNodes = [...nodes];
 		});
 
-  function dragsubject(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+  function dragsubject(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
     return simulation.find(event.x, event.y);
   }
 
-	function dragstarted(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+	function dragstarted(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
 		if (!event.active) simulation.alphaTarget(0.3).restart();
 		event.subject.fx = event.subject.x;
 		event.subject.fy = event.subject.y;
 	}
 
-	function dragged(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+	function dragged(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
 		event.subject.fx = event.x;
 		event.subject.fy = event.y;
 	}
 
-	function dragended(event: d3.D3DragEvent<SVGCircleElement, Node, Subject>) {
+	function dragended(event: d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>) {
 		if (!event.active) simulation.alphaTarget(0);
 		event.subject.fx = null;
 		event.subject.fy = null;
@@ -72,7 +56,7 @@
 		simNodes.forEach((node) => {
 			d3.select(node).call(
 				d3
-					.drag<SVGCircleElement, Node>()
+					.drag<SVGCircleElement, GraphNode>()
           .subject(dragsubject)
 					.on('start', dragstarted)
 					.on('drag', dragged)
