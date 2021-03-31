@@ -5,11 +5,11 @@ export const LF = '\n';
 export const CRLF = `${CR}${LF}`;
 
 export enum Prefix {
-	SimpleString = '+',
-	Error = '-',
-	Integer = ':',
-	BulkString = '$',
-	Array = '*'
+  SimpleString = '+',
+  Error = '-',
+  Integer = ':',
+  BulkString = '$',
+  Array = '*',
 }
 
 export const OK = `${Prefix.SimpleString}OK${CRLF}`;

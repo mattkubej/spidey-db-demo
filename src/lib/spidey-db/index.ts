@@ -1,29 +1,29 @@
 import SpideyDbClient from './client';
 
 class SpideyDb {
-	private client: SpideyDbClient;
+  private client: SpideyDbClient;
 
-	constructor() {
-		this.client = new SpideyDbClient();
-		this.client.connect();
-	}
+  constructor() {
+    this.client = new SpideyDbClient();
+    this.client.connect();
+  }
 
-	async bootstrap() {
-		await this.client.setVertex('a', '1');
-		await this.client.setVertex('b', '2');
-		await this.client.setVertex('c', '3');
-		await this.client.setVertex('d', '4');
-		await this.client.setVertex('e', '5');
+  async bootstrap() {
+    await this.client.setVertex('a', '1');
+    await this.client.setVertex('b', '2');
+    await this.client.setVertex('c', '3');
+    await this.client.setVertex('d', '4');
+    await this.client.setVertex('e', '5');
 
-		await this.client.setEdge('a', 'b');
-		await this.client.setEdge('b', 'c');
-		await this.client.setEdge('c', 'd');
-		await this.client.setEdge('d', 'e');
-	}
+    await this.client.setEdge('a', 'b');
+    await this.client.setEdge('b', 'c');
+    await this.client.setEdge('c', 'd');
+    await this.client.setEdge('d', 'e');
+  }
 
-	async getNeighbors(vertexKey: string, distance: number): Promise<string[]> {
-		return this.client.getNeighbors(vertexKey, distance);
-	}
+  async getNeighbors(vertexKey: string, distance: number): Promise<string[]> {
+    return this.client.getNeighbors(vertexKey, distance);
+  }
 }
 
 export default new SpideyDb();
