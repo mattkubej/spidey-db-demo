@@ -17,3 +17,8 @@ interface GraphLink extends d3.SimulationLinkDatum<Node> {
   source: string & Subject;
   target: string & Subject;
 }
+
+type GraphSimulation = d3.Simulation<GraphNode, undefined>;
+type GraphNodeDragBehavior = d3.DragBehavior<SVGCircleElement, GraphNode, Subject>;
+type GraphNodeDragEvent = d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>;
+
