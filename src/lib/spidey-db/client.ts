@@ -73,6 +73,16 @@ export default class SpideyDbClient {
     return response;
   }
 
+  async getGraph(): Promise<string[]> {
+    const response = await this.send(['GETGRAPH']);
+
+    if (!Array.isArray(response)) {
+      throw Error('unexpected response');
+    }
+
+    return response;
+  }
+
   connect(): void {
     const client = createConnection(
       this.port,

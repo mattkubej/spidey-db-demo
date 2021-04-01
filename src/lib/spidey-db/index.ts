@@ -24,6 +24,10 @@ class SpideyDb {
   async getNeighbors(vertexKey: string, distance: number): Promise<string[]> {
     return this.client.getNeighbors(vertexKey, distance);
   }
+
+  async getGraph(): Promise<string[]> {
+    return this.client.getGraph();
+  }
 }
 
 export default new SpideyDb();
