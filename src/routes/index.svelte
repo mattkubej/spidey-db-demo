@@ -15,18 +15,15 @@
 <script lang="ts">
   import Graph from '$lib/components/Graph.svelte';
   import Form from '$lib/components/Form.svelte';
-  import { getNeighbors } from '$lib/utils/api';
   import { query } from '$lib/store';
 
   export let vertices: string[];
   export let edges: string[][];
 
   $: {
-    if ($query.vector && $query.distance) {
-      getNeighbors($query.vector, $query.distance).then((neighbors) => {
-        vertices = neighbors.vertices;
-        edges = neighbors.edges;
-      });
+    if ($query.vertices.length > 0 || $query.edges.length > 0) {
+      vertices = $query.vertices;
+      edges = $query.edges;
     }
   }
 </script>
