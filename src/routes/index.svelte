@@ -1,5 +1,6 @@
 <script context="module">
   export async function load({ fetch }) {
+    // fetch only available through dependency injection on load
     const res = await fetch('/graph/full');
     const { vertices, edges } = await res.json();
     return {
