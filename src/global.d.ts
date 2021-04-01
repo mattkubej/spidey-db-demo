@@ -25,3 +25,8 @@ type GraphNodeDragBehavior = d3.DragBehavior<
   Subject
 >;
 type GraphNodeDragEvent = d3.D3DragEvent<SVGCircleElement, GraphNode, Subject>;
+
+type SpideyDbGraph = {
+  vertices: string[],
+  edges: string[][],
+};

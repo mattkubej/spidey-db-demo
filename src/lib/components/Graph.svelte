@@ -3,7 +3,7 @@
   import drag from '$lib/utils/drag';
 
   export let vertices: string[] = [];
-  export let edges: string[] = [];
+  export let edges: string[][] = [];
 
   const width = 400;
   const height = 400;

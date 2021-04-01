@@ -14,17 +14,11 @@
 <script lang="ts">
   import Graph from '$lib/components/Graph.svelte';
   import Form from '$lib/components/Form.svelte';
+  import { getNeighbors } from '$lib/utils/api';
   import { query } from '$lib/store';
 
   export let vertices: string[];
-  export let edges: string[];
-
-  async function getNeighbors(vertex: string, distance: string) {
-    const res = await fetch(
-      `/graph/neighbors?vertex=${vertex}&distance=${distance}`
-    );
-    return res.json();
-  }
+  export let edges: string[][];
 
   $: {
     if ($query.vector && $query.distance) {
