@@ -8,7 +8,7 @@ class SpideyDb {
     this.client.connect();
   }
 
-  async bootstrap() {
+  async populate() {
     await this.client.setVertex('a', '1');
     await this.client.setVertex('b', '2');
     await this.client.setVertex('c', '3');

@@ -14,7 +14,6 @@ export async function get({ query }: Request): Promise<Response> {
     };
   }
 
-  await spideydb.bootstrap();
   const [vertices, edges] = await spideydb.getNeighbors(
     vertex,
     Number(distance)
