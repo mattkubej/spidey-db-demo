@@ -1,13 +1,13 @@
 <script lang="ts">
-import { query } from '$lib/store';
+import { graphStore } from '$lib/store';
 import { populateGraph, getGraph } from '$lib/utils/api';
 
 async function handleClick() {
   await populateGraph();
 
   await getGraph().then((graph) => {
-    $query.vertices = graph.vertices;
-    $query.edges = graph.edges;
+    $graphStore.vertices = graph.vertices;
+    $graphStore.edges = graph.edges;
   });
 }
 </script>

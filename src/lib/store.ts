@@ -1,8 +1,11 @@
 import { writable } from 'svelte/store';
 
-export const query = writable({
+export const queryStore = writable({
   vector: '',
   distance: '',
+});
+
+export const graphStore = writable({
   vertices: [],
   edges: [],
 });

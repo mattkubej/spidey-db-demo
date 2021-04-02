@@ -1,25 +1,32 @@
 <script lang="ts">
-  import { query } from '$lib/store';
-  import { getNeighbors } from '$lib/utils/api';
+  import { queryStore, graphStore } from '$lib/store';
+  import { getNeighbors, getGraph } from '$lib/utils/api';
 
-  export let vector: string;
-  export let distance: string;
-
-  $: {
-    if (vector && distance) {
-      getNeighbors(vector, distance).then((neighbors) => {
-        $query.vertices = neighbors.vertices;
-        $query.edges = neighbors.edges;
+  function handleSearch() {
+    if (($queryStore.vector, $queryStore.distance)) {
+      getNeighbors($queryStore.vector, $queryStore.distance).then((neighbors) => {
+        $graphStore.vertices = neighbors.vertices;
+        $graphStore.edges = neighbors.edges;
       });
     }
+  }
 
+  function handleClear() {
+    $queryStore.vector = '';
+    $queryStore.distance = '';
+
+    getGraph().then((graph) => {
+      $graphStore.vertices = graph.vertices;
+      $graphStore.edges = graph.edges;
+    });
   }
 </script>
 
 <div class="container">
-  <input bind:value={vector} />
-  <input bind:value={distance} />
-  <button>cancel</button>
+  <input bind:value={$queryStore.vector} />
+  <input bind:value={$queryStore.distance} />
+  <button on:click={handleSearch}>search</button>
+  <button on:click={handleClear}>clear</button>
 </div>
 
 <style>

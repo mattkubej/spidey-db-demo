@@ -16,18 +16,15 @@
   import Graph from '$lib/components/Graph.svelte';
   import Populate from '$lib/components/Populate.svelte';
   import Form from '$lib/components/Form.svelte';
-  import { query } from '$lib/store';
+  import { graphStore } from '$lib/store';
 
   export let vertices: string[];
   export let edges: string[][];
 
-  export let vector: string = $query.vector;
-  export let distance: string = $query.distance;
-
   $: {
-    if ($query.vertices.length > 0 || $query.edges.length > 0) {
-      vertices = $query.vertices;
-      edges = $query.edges;
+    if ($graphStore.vertices.length > 0 || $graphStore.edges.length > 0) {
+      vertices = $graphStore.vertices;
+      edges = $graphStore.edges;
     }
   }
 </script>
@@ -39,7 +36,7 @@
 <main>
   <h1>Spidey DB Demo</h1>
   <Populate />
-  <Form vector={vector} {distance} />
+  <Form />
   <Graph {vertices} {edges} />
 </main>
 
