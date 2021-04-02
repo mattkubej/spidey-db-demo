@@ -21,6 +21,9 @@
   export let vertices: string[];
   export let edges: string[][];
 
+  export let vector: string = $query.vector;
+  export let distance: string = $query.distance;
+
   $: {
     if ($query.vertices.length > 0 || $query.edges.length > 0) {
       vertices = $query.vertices;
@@ -36,7 +39,7 @@
 <main>
   <h1>Spidey DB Demo</h1>
   <Populate />
-  <Form />
+  <Form vector={vector} {distance} />
   <Graph {vertices} {edges} />
 </main>
 

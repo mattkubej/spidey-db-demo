@@ -2,8 +2,8 @@
   import { query } from '$lib/store';
   import { getNeighbors } from '$lib/utils/api';
 
-  $: vector = '';
-  $: distance = '';
+  export let vector: string;
+  export let distance: string;
 
   $: {
     if (vector && distance) {
@@ -17,10 +17,9 @@
 </script>
 
 <div class="container">
-  <form>
-    <input bind:value={vector} />
-    <input bind:value={distance} />
-  </form>
+  <input bind:value={vector} />
+  <input bind:value={distance} />
+  <button>cancel</button>
 </div>
 
 <style>
