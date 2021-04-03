@@ -1,5 +1,6 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
+  import Populate from '$lib/components/Populate.svelte';
 
   import { queryStore, graphStore } from '$lib/store';
   import { getNeighbors, getGraph } from '$lib/utils/api';
@@ -26,21 +27,20 @@
 
 <div class="container">
   <div>
-    <input placeholder="vector" bind:value={$queryStore.vector} />
+    <Populate />
+    <Button onClick={handleClear} label="clear" />
   </div>
-
-  <div>
-    <input placeholder="distance" bind:value={$queryStore.distance} />
+  <div class="search">
+    <input id="vector" placeholder="vector" bind:value={$queryStore.vector} />
+    <input id="distance" placeholder="distance" bind:value={$queryStore.distance} />
+    <Button onClick={handleSearch} label="search" />
   </div>
-
-  <Button onClick={handleSearch} label="search" />
-  <Button onClick={handleClear} label="clear" />
 </div>
 
 <style>
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   }
 
   input {
@@ -57,5 +57,9 @@
   ::placeholder {
     color: var(--gray);
     opacity: 1;
+  }
+
+  input#distance {
+    width: 60px;
   }
 </style>

@@ -14,7 +14,6 @@
 
 <script lang="ts">
   import Graph from '$lib/components/Graph.svelte';
-  import Populate from '$lib/components/Populate.svelte';
   import Controls from '$lib/components/Controls.svelte';
   import { graphStore } from '$lib/store';
 
@@ -35,7 +34,6 @@
 
 <main>
   <h1>Spidey DB Demo</h1>
-  <Populate />
   <Controls />
   <Graph {vertices} {edges} />
 </main>
