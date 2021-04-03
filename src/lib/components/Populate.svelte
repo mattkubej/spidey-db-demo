@@ -1,4 +1,6 @@
 <script lang="ts">
+import Button from '$lib/components/Button.svelte';
+
 import { graphStore } from '$lib/store';
 import { populateGraph, getGraph } from '$lib/utils/api';
 
@@ -12,7 +14,7 @@ async function handleClick() {
 }
 </script>
 
-<button on:click={handleClick}>Populate</button>
+<Button onClick={handleClick} label="populate" />
 
 <style>
 </style>
