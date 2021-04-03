@@ -47,15 +47,21 @@
 
     --bg: #1d2021;
     --bg2: #504945;
+    --bg3: #665c54;
+    --bg4: #7c6f64;
     --fg: #fbf1c7;
     --fg2: #d5c4a1;
+    --fg3: #bdae93;
+    --fg4: #a89984;
     --purple: #d3869b;
+    --dark-purple: #b16286;
     --blue: #83a598;
     --red: #fb4934;
     --green: #b8bb26;
     --yellow: #fabd2f;
     --aqua: #8ec07c;
     --orange: #fe8019;
+    --gray: #928374;
 
     --textNormal: var(--fg);
     --textLink: var(--purple);

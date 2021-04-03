@@ -23,8 +23,14 @@
 </script>
 
 <div class="container">
-  <input bind:value={$queryStore.vector} />
-  <input bind:value={$queryStore.distance} />
+  <div>
+    <input placeholder="vector" bind:value={$queryStore.vector} />
+  </div>
+
+  <div>
+    <input placeholder="distance" bind:value={$queryStore.distance} />
+  </div>
+
   <button on:click={handleSearch}>search</button>
   <button on:click={handleClear}>clear</button>
 </div>
@@ -32,6 +38,36 @@
 <style>
   .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+  }
+
+  input {
+    background: transparent;
+    border: 1px solid var(--purple);
+    border-radius: 3px;
+
+    padding: 10px;
+    color: var(--fg2);
+
+    margin-right: 15px;
+  }
+
+  ::placeholder {
+    color: var(--gray);
+    opacity: 1;
+  }
+
+  button {
+    background-color: var(--dark-purple);
+    border: none;
+    border-radius: 3px;
+    color: var(--fg);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-right: 15px;
+  }
+
+  button:hover {
+    background-color: var(--purple);
   }
 </style>
