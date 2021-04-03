@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Button from '$lib/components/Button.svelte';
+
   import { queryStore, graphStore } from '$lib/store';
   import { getNeighbors, getGraph } from '$lib/utils/api';
 
@@ -31,8 +33,8 @@
     <input placeholder="distance" bind:value={$queryStore.distance} />
   </div>
 
-  <button on:click={handleSearch}>search</button>
-  <button on:click={handleClear}>clear</button>
+  <Button onClick={handleSearch} label="search" />
+  <Button onClick={handleClear} label="clear" />
 </div>
 
 <style>
@@ -55,19 +57,5 @@
   ::placeholder {
     color: var(--gray);
     opacity: 1;
-  }
-
-  button {
-    background-color: var(--dark-purple);
-    border: none;
-    border-radius: 3px;
-    color: var(--fg);
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    margin-right: 15px;
-  }
-
-  button:hover {
-    background-color: var(--purple);
   }
 </style>
