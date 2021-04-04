@@ -44,14 +44,19 @@
   }
 
   input {
-    background: transparent;
-    border: 1px solid var(--purple);
+    background: var(--bg2);
+    border: 1px solid var(--fg4);
     border-radius: 3px;
 
     padding: 10px;
     color: var(--fg2);
 
     margin-right: 15px;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--purple);
   }
 
   ::placeholder {
