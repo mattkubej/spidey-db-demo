@@ -28,6 +28,10 @@ class SpideyDb {
   async getGraph(): Promise<string[]> {
     return this.client.getGraph();
   }
+
+  async getVertex(key: string): Promise<string> {
+    return this.client.getVertex(key);
+  }
 }
 
 export default new SpideyDb();
