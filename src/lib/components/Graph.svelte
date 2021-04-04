@@ -37,6 +37,10 @@
       d3.select(node).call(drag(simulation));
     });
   }
+
+  function handleNodeClick(id: string) {
+    console.log(id);
+  }
 </script>
 
 <div class="container">
@@ -64,7 +68,11 @@
     </g>
     <g stroke="var(--fg)" stroke-width="1.5">
       {#each renderedNodes as { x, y, id }, i}
-        <g bind:this={simNodes[i]} transform={`translate(${x},${y})`}>
+        <g
+          bind:this={simNodes[i]}
+          transform={`translate(${x},${y})`}
+          on:click={() => handleNodeClick(id)}
+        >
           <circle fill="var(--bg2)" r={10} />
           <text cursor="pointer" fill="white" font-size="12" y="3" x="-4"
             >{id}</text
