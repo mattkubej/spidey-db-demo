@@ -1,6 +1,6 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
-  import Populate from '$lib/components/Populate.svelte';
+  import PopulateButton from '$lib/components/PopulateButton.svelte';
 
   import { queryStore, graphStore } from '$lib/store';
   import { getNeighbors, getGraph } from '$lib/utils/api';
@@ -27,7 +27,7 @@
 
 <div class="container">
   <div>
-    <Populate />
+    <PopulateButton />
     <Button onClick={handleClear} label="clear" />
   </div>
   <div class="search">
