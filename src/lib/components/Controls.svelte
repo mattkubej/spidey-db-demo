@@ -2,7 +2,7 @@
   import Button from '$lib/components/Button.svelte';
   import PopulateButton from '$lib/components/PopulateButton.svelte';
 
-  import { queryStore, graphStore } from '$lib/store';
+  import { queryStore, graphStore, nodeDetails } from '$lib/store';
   import { getNeighbors, getGraph } from '$lib/utils/api';
 
   function handleSearch() {
@@ -17,6 +17,7 @@
   function handleClear() {
     $queryStore.vector = '';
     $queryStore.distance = '';
+    $nodeDetails.selectedNodeKey = '';
 
     getGraph().then((graph) => {
       $graphStore.vertices = graph.vertices;

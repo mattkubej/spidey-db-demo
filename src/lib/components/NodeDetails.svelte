@@ -14,13 +14,17 @@
           details = data;
         }
       });
+    } else {
+      details = '';
     }
   }
 </script>
 
-<div class="node-details">
-  <pre>{details}</pre>
-</div>
+{#if details !== ''}
+  <div class="node-details">
+    <pre>{details}</pre>
+  </div>
+{/if}
 
 <style>
   .node-details {
