@@ -45,22 +45,6 @@
 </script>
 
 <div class="container">
-  <div>
-    <h2>Vertices</h2>
-    <ul>
-      {#each vertices as vertex}
-        <ul>{vertex}</ul>
-      {/each}
-    </ul>
-
-    <h2>Edges</h2>
-    <ul>
-      {#each edges as edge}
-        <ul>{edge}</ul>
-      {/each}
-    </ul>
-  </div>
-
   <svg {width} {height}>
     <g stroke="var(--fg)" stroke-width="0.6">
       {#each renderedLinks as { source, target }}
@@ -88,9 +72,5 @@
   .container {
     display: flex;
     justify-content: space-around;
-  }
-
-  h2 {
-    color: var(--purple);
   }
 </style>

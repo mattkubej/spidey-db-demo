@@ -13,7 +13,8 @@
 </script>
 
 <script lang="ts">
-  import Graph from '$lib/components/Graph.svelte';
+  import GraphLists from '$lib/components/GraphLists.svelte';
+  import GraphModel from '$lib/components/GraphModel.svelte';
   import Controls from '$lib/components/Controls.svelte';
   import NodeDetails from '$lib/components/NodeDetails.svelte';
   import { graphStore } from '$lib/store';
@@ -36,8 +37,13 @@
 <main>
   <h1>Spidey DB Demo</h1>
   <Controls />
-  <Graph {vertices} {edges} />
-  <NodeDetails />
+  <div class="container">
+    <GraphLists {vertices} {edges} />
+    <div>
+      <GraphModel {vertices} {edges} />
+      <NodeDetails />
+    </div>
+  </div>
 </main>
 
 <style>
@@ -88,18 +94,13 @@
     max-width: 14rem;
   }
 
-  p {
-    max-width: 14rem;
-    margin: 2rem auto;
-    line-height: 1.35;
+  .container {
+    display: flex;
+    justify-content: space-around;
   }
 
   @media (min-width: 480px) {
     h1 {
-      max-width: none;
-    }
-
-    p {
       max-width: none;
     }
   }
