@@ -1,27 +1,39 @@
 <script lang="ts">
-import { nodeDetails } from '$lib/store';
-import { getVertex } from '$lib/utils/api';
+  import { nodeDetails } from '$lib/store';
+  import { getVertex } from '$lib/utils/api';
 
   $: details = '';
 
-$: {
-  const selectedNodeKey = $nodeDetails.selectedNodeKey;
-  if (selectedNodeKey) {
-    getVertex(selectedNodeKey).then((data) => {
-      details = data;
-    });
+  $: {
+    const selectedNodeKey = $nodeDetails.selectedNodeKey;
+    if (selectedNodeKey) {
+      getVertex(selectedNodeKey).then((data) => {
+        try {
+          details = JSON.stringify(JSON.parse(data), null, 2);
+        } catch (e) {
+          details = data;
+        }
+      });
+    }
   }
-}
 </script>
 
-<div class="node-details">{details}</div>
+<div class="node-details">
+  <pre>{details}</pre>
+</div>
 
 <style>
   .node-details {
+    color: var(--fg2);
+    font-size: 12px;
     text-align: left;
     padding: 10px;
     background: var(--bg2);
     border: 1px solid var(--fg4);
     border-radius: 3px;
+  }
+
+  pre {
+    margin: 5px;
   }
 </style>
