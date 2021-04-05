@@ -15,6 +15,7 @@
 <script lang="ts">
   import Graph from '$lib/components/Graph.svelte';
   import Controls from '$lib/components/Controls.svelte';
+  import NodeDetails from '$lib/components/NodeDetails.svelte';
   import { graphStore } from '$lib/store';
 
   export let vertices: string[];
@@ -36,6 +37,7 @@
   <h1>Spidey DB Demo</h1>
   <Controls />
   <Graph {vertices} {edges} />
+  <NodeDetails />
 </main>
 
 <style>

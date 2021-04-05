@@ -9,3 +9,7 @@ export const graphStore = writable({
   vertices: [],
   edges: [],
 });
+
+export const nodeDetails = writable({
+  selectedNodeKey: '',
+});

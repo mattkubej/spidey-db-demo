@@ -22,3 +22,8 @@ export async function populateGraph(): Promise<boolean> {
 
   return ok;
 }
+
+export async function getVertex(key: string): Promise<string> {
+  const res = await fetch(`/graph/vertex/${key}`);
+  return res.text();
+}
