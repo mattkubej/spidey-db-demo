@@ -58,7 +58,12 @@
           transform={`translate(${x},${y})`}
           on:click={() => handleNodeClick(id)}
         >
-          <circle fill="var(--bg2)" r={10} />
+          <circle
+            fill={id === $nodeDetailsStore.selectedNodeKey
+              ? 'var(--blue)'
+              : 'var(--bg2)'}
+            r={10}
+          />
           <text cursor="pointer" fill="white" font-size="12" y="3" x="-4"
             >{id}</text
           >
