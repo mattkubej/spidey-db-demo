@@ -6,6 +6,8 @@
   import { getNeighbors, getGraph } from '$lib/utils/api';
 
   function handleSearch() {
+    $nodeDetailsStore.selectedNodeKey = '';
+
     if (($queryStore.vector, $queryStore.distance)) {
       getNeighbors($queryStore.vector, $queryStore.distance).then((neighbors) => {
         $graphStore.vertices = neighbors.vertices;
@@ -15,9 +17,10 @@
   }
 
   function handleClear() {
+    $nodeDetailsStore.selectedNodeKey = '';
+
     $queryStore.vector = '';
     $queryStore.distance = '';
-    $nodeDetailsStore.selectedNodeKey = '';
 
     getGraph().then((graph) => {
       $graphStore.vertices = graph.vertices;
