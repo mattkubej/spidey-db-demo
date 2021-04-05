@@ -64,7 +64,7 @@
               : 'var(--bg2)'}
             r={10}
           />
-          <text cursor="pointer" fill="white" font-size="12" y="3" x="-4"
+          <text fill="white" y="4" x="14"
             >{id}</text
           >
         </g>
@@ -77,5 +77,15 @@
   .container {
     display: flex;
     justify-content: space-around;
+  }
+
+  circle {
+    cursor: pointer;
+  }
+
+  text {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: lighter;
   }
 </style>
