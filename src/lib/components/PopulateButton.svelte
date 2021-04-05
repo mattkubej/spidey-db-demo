@@ -7,10 +7,10 @@ import { populateGraph, getGraph } from '$lib/utils/api';
 async function handleClick() {
   await populateGraph();
 
-  await getGraph().then((graph) => {
-    $graphStore.vertices = graph.vertices;
-    $graphStore.edges = graph.edges;
-  });
+  const graph = await getGraph();
+
+  $graphStore.vertices = graph.vertices;
+  $graphStore.edges = graph.edges;
 }
 </script>
 
