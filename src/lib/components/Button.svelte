@@ -15,6 +15,7 @@
     transition: all 0.2s ease-in-out;
     margin-right: 15px;
     padding: 10px;
+    font-weight: 600;
   }
 
   button:hover {
