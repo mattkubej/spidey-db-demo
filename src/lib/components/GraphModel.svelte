@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as d3 from 'd3';
   import drag from '$lib/utils/drag';
-  import { nodeDetails } from '$lib/store';
+  import { nodeDetailsStore } from '$lib/store';
 
   export let vertices: string[] = [];
   export let edges: string[][] = [];
@@ -40,7 +40,7 @@
   }
 
   function handleNodeClick(key: string) {
-    $nodeDetails.selectedNodeKey = key;
+    $nodeDetailsStore.selectedNodeKey = key;
   }
 </script>
 

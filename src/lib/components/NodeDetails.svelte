@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { nodeDetails } from '$lib/store';
+  import { nodeDetailsStore } from '$lib/store';
   import { getVertex } from '$lib/utils/api';
 
   $: details = '';
 
   $: {
-    const selectedNodeKey = $nodeDetails.selectedNodeKey;
+    const selectedNodeKey = $nodeDetailsStore.selectedNodeKey;
     if (selectedNodeKey) {
       getVertex(selectedNodeKey).then((data) => {
         try {
