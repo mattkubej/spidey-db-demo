@@ -32,12 +32,12 @@
 <div class="container">
   <div>
     <PopulateButton />
-    <Button onClick={handleClear} label="clear" />
   </div>
   <div class="search">
     <input id="vector" placeholder="vector" bind:value={$queryStore.vector} />
     <input id="distance" placeholder="distance" bind:value={$queryStore.distance} />
     <Button onClick={handleSearch} label="search" />
+    <Button onClick={handleClear} label="clear" />
   </div>
 </div>
 
