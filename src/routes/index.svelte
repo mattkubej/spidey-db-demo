@@ -37,13 +37,17 @@
 
 <main>
   <h1>Spidey DB Demo</h1>
-  <PopulateButton />
-  <Search />
   <div class="container">
-    <GraphLists {vertices} {edges} />
     <div>
-      <GraphModel {vertices} {edges} />
-      <NodeDetails />
+      <PopulateButton />
+      <GraphLists {vertices} {edges} />
+    </div>
+    <div>
+      <Search />
+      <div>
+        <GraphModel {vertices} {edges} />
+        <NodeDetails />
+      </div>
     </div>
   </div>
 </main>
