@@ -15,7 +15,7 @@
 <script lang="ts">
   import GraphLists from '$lib/components/GraphLists.svelte';
   import GraphModel from '$lib/components/GraphModel.svelte';
-  import Controls from '$lib/components/Controls.svelte';
+  import Search from '$lib/components/Search.svelte';
   import NodeDetails from '$lib/components/NodeDetails.svelte';
   import { graphStore } from '$lib/store';
 
@@ -36,7 +36,7 @@
 
 <main>
   <h1>Spidey DB Demo</h1>
-  <Controls />
+  <Search />
   <div class="container">
     <GraphLists {vertices} {edges} />
     <div>
