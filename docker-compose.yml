@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  spidey-db:
+    build: ./packages/spidey-db
+    ports:
+      - 6425:6425
