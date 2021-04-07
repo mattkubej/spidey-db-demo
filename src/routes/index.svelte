@@ -16,6 +16,7 @@
   import GraphLists from '$lib/components/GraphLists.svelte';
   import GraphModel from '$lib/components/GraphModel.svelte';
   import Search from '$lib/components/Search.svelte';
+  import PopulateButton from '$lib/components/PopulateButton.svelte';
   import NodeDetails from '$lib/components/NodeDetails.svelte';
   import { graphStore } from '$lib/store';
 
@@ -36,6 +37,7 @@
 
 <main>
   <h1>Spidey DB Demo</h1>
+  <PopulateButton />
   <Search />
   <div class="container">
     <GraphLists {vertices} {edges} />
