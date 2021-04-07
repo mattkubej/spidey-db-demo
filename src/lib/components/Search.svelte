@@ -30,10 +30,10 @@
 
 <div class="container">
   <div class="search">
-    <input id="vector" placeholder="vector" bind:value={$queryStore.vector} />
-    <input id="distance" placeholder="distance" bind:value={$queryStore.distance} />
-    <Button onClick={handleSearch} label="search" />
-    <Button onClick={handleClear} label="clear" />
+    <input id="vector" class="spacing" placeholder="vector" bind:value={$queryStore.vector} />
+    <input id="distance" class="spacing" placeholder="distance" bind:value={$queryStore.distance} />
+    <Button class="spacing" onClick={handleSearch} label="search" />
+    <Button class="spacing" onClick={handleClear} label="clear" />
   </div>
 </div>
 
@@ -43,6 +43,10 @@
     justify-content: space-around;
   }
 
+  :global(.spacing) {
+    margin-right: 10px;
+  }
+
   input {
     background: var(--bg2);
     border: 1px solid var(--fg4);
@@ -50,8 +54,6 @@
 
     padding: 10px;
     color: var(--fg2);
-
-    margin-right: 15px;
   }
 
   input:focus {

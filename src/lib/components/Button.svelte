@@ -1,9 +1,11 @@
 <script lang="ts">
   export let onClick: svelte.JSX.MouseEventHandler<HTMLButtonElement>;
   export let label: string;
+  export { className as class };
+  let className = '';
 </script>
 
-<button on:click={onClick}>{label}</button>
+<button class={className} on:click={onClick}>{label}</button>
 
 <style>
   button {
@@ -13,7 +15,6 @@
     color: var(--fg);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    margin-right: 15px;
     padding: 10px;
     font-weight: 600;
   }
