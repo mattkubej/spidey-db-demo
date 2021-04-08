@@ -101,6 +101,8 @@
   }
 
   .container {
+    margin: auto;
+    width: 850px;
     display: flex;
     justify-content: space-around;
   }

@@ -1,4 +1,5 @@
-import { createConnection, Socket } from 'net';
+import { createConnection } from 'net';
+import type { Socket } from 'net';
 import * as encoder from './encoder';
 import * as decoder from './decoder';
 

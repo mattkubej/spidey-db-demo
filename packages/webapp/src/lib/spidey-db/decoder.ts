@@ -1,4 +1,5 @@
-import { Data, CR, LF, Prefix } from './constants';
+import { CR, LF, Prefix } from './constants';
+import type { Data } from './constants';
 
 type Token = {
   value: Data;
