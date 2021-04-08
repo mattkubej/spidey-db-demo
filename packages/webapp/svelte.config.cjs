@@ -17,6 +17,9 @@ module.exports = {
     target: '#svelte',
 
     vite: {
+      globals: {
+        d3: 'd3',
+      },
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
