@@ -9,11 +9,11 @@ class SpideyDb {
   }
 
   async populate() {
-    await this.client.setVertex('a', '1');
-    await this.client.setVertex('b', '2');
-    await this.client.setVertex('c', '3');
-    await this.client.setVertex('d', '4');
-    await this.client.setVertex('e', '5');
+    await this.client.setVertex('a', "node a's data");
+    await this.client.setVertex('b', "node b's data");
+    await this.client.setVertex('c', "node c's data");
+    await this.client.setVertex('d', "node d's data");
+    await this.client.setVertex('e', "node e's data");
 
     await this.client.setEdge('a', 'b');
     await this.client.setEdge('b', 'c');
