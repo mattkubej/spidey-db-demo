@@ -2,6 +2,8 @@
 
 Visual demo of Spidey DB (in-memory graph database)
 
+Spidey DB: [https://github.com/kubejm/spidey-db](https://github.com/kubejm/spidey-db)
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/kubejm/spidey-db-demo/master/demo.gif" />
 </p>
